@@ -1,0 +1,139 @@
+---
+title: "What Is SUP?"
+description: "The MVC Pattern for AI Agent Applications"
+icon: "recycle"
+---
+
+AI agent projects often struggle with maintaining clarity, modularity, and evaluability as they grow in complexity. Many of these systems aim not for open-ended conversation but for the **co‑construction of structured artifacts** — such as registration records, project plans, or analytical summaries — that have clear form and meaning.
+
+Recognizing this intent reveals a **design pattern** where conversations revolve around a central, evolving artifact — the *artifact state*. Similar to the **MVC** pattern in conventional software, SUP separates reasoning, state management, and presentation to achieve higher levels of **modularity, testability, replaceability, observability, and portability**. By formalizing this structure, teams can design and evaluate language‑model systems with improved **granularity, efficiency, transparency, and cost‑effectiveness**.
+
+---
+
+AI Agent projects often face challenges in maintaining clarity, modularity, and evaluability as they grow in complexity, especially those with the goal of conversation is not arbitrary dialogue but the **co‑construction of structured artifacts** — such as registration records, project plans, design drafts, or analytical summaries — that carry discernible form and semantics. 
+
+In such projects, recognizing this shared intent reveals a **general design pattern** in which conversations revolve around a central, evolving artifact — the *artifact state*. Similar to **MVC** in conventional software design—separating reasoning, state management, and presentation—to achieve higher levels of **modularity, testability, replaceability, observability, and portability**. By formalizing this pattern, teams can design, evaluate, and refine language‑model systems with improved **granularity, efficiency, transparency, and cost‑effectiveness** **modularity, testability, replaceability, observability, and portability**.  By formalizing this pattern, we can design, evaluate, and refine language‑model‑powered systems with greater **granularity, efficiency, transparency, and cost‑effectiveness**.
+
+---
+
+## 1. Design Overview – The State–Updater–Presenter (SUP) Pattern
+
+The **State–Updater–Presenter (SUP)** pattern divides a conversational or agentic system into three functional parts:
+
+1. **State** – the structured artifact that represents the evolving context or goal.
+2. **Updater** – the component responsible for interpreting user inputs, tool results, and updating the state.
+3. **Presenter** – the component that interprets the current state and produces user-facing messages or UI renderings.
+
+This separation provides a foundation similar to the conventional MVC model while adapting to the conversational and reasoning needs of language-model-based systems.
+
+--- (SUP ≈ MVC for AI)
+
+**SUP** follows a separation of concerns that closely mirrors the **MVC** pattern in conventional software design. Conversations are organized around a central, evolving **artifact state** (the “Model”), with distinct components for mutation logic (the “Controller”) and user-facing rendering (the “View”).
+
+### Schema‑First “Model”: Artifact State
+
+* Define the artifact state **schema first** (fields, types, constraints, dependencies).
+* Treat it as the single source of truth for validation, defaults, and invariants.
+* Design for **DAG dependencies** among fields so partial progress can unlock subsequent fields.
+
+### “Controller”: Updater
+
+* Interprets user input and tool results; **applies state mutations** only.
+* Encodes business rules and validations; emits **deterministic state diffs**.
+* Produces **no user‑facing text**; focuses purely on correct state evolution.
+
+### “View”: Presenter
+
+* Interprets the current artifact state (and optionally history).
+* Generates **natural‑language responses** or **UI views**; style and tone are independent of logic.
+* Aims to be **schema‑agnostic**, enabling reuse across artifacts, projects, agents, and applications.
+
+### SUP ↔ MVC Mapping
+
+| SUP Component      | MVC Analogy    | Responsibility                                                           |
+| ------------------ | -------------- | ------------------------------------------------------------------------ |
+| **Artifact State** | **Model**      | Structured data, constraints, dependencies, source of truth              |
+| **Updater**        | **Controller** | Interprets intents, enforces rules, applies mutations, emits state diffs |
+| **Presenter**      | **View**       | Renders state to text or UI; controls tone, format, and UX               |
+
+### Design Benefits
+
+* **Modularity & Parallelism**: Teams can evolve schema, updater logic, and presentation independently.
+* **Determinism & Testability**: State diffs make unit tests and property tests straightforward.
+* **Replaceability**: Swap LLMs/tools in the Updater or styles/templates in the Presenter without coupling.
+* **Generative UI**: Renderers and form builders can be generated from the schema.
+* **Observability**: Clear audit logs of state transitions; easier debugging and rollback.
+* **Portability**: A well‑defined state enables reuse across apps and agents.
+
+---
+
+## 1. Comparison with MVC – Overall Differences
+
+While the SUP pattern inherits the separation principles of MVC, it differs in several recommended ways across each of the three main components:
+
+* **Model / Artifact State** – suggested to follow a schema-first design for interoperability and to include conversational dependencies.
+* **Controller / Updater** – focuses solely on deterministic state mutations, isolating reasoning from presentation.
+* **View / Presenter** – aims to be schema-agnostic and reusable across artifacts, projects, agents, and applications.
+
+These distinctions reflect how SUP extends the MVC concept to suit conversational and agentic workflows powered by language models.
+
+---
+
+## 1.1 Comparison with MVC – Focus on the State (Model)
+
+While the SUP pattern inherits the separation principles of MVC, it differs in two recommended ways regarding the **state** (analogous to the model):
+
+1. **Schema-First, Cross-Agent Interoperability**
+   In SUP, the artifact state is suggested to be defined in a **schema-first format** (e.g., OpenAPI or JSON Schema) to enhance **shareability across agents, languages, and frameworks**. This approach enables multiple components or agents to interpret, validate, and update the same state consistently, while still allowing code-first generation where appropriate.
+
+2. **Conversational Dependencies**
+   Unlike conventional models that primarily encode data structure and persistence rules, the SUP state is recommended to include **semantic dependencies** — indicating which fields are expected to be gathered through conversation or external retrieval before others can proceed. These dependencies guide the dialogue flow, helping the agent collect information or perform lookups in a logical order.
+
+---
+
+## 2. Problem Statement
+
+### The Role of Evaluation in Software Applications
+
+Evaluation is a critical foundation for the **continuous improvement of software applications**.
+Just as testing and benchmarking underpin the reliability of conventional systems, systematic evaluation ensures that software maintains **quality, consistency, and usability** as it evolves.
+Accurate evaluation provides the feedback loop needed to refine models, components, workflows, and user experiences — forming the basis for **data-driven iteration and deployment confidence**.
+
+---
+
+### Why Evaluation of LLM Applications Is Complex
+
+However, evaluating LLM-driven systems is far more complex than evaluating traditional software.
+Conventional programs produce deterministic outputs that can be verified through well-defined rules or unit tests, while language models generate **probabilistic, context-dependent, and multi-modal responses**.
+Several factors contribute to this complexity:
+
+1. **Non-determinism** – The same prompt can yield different valid outputs due to model randomness, context drift, or temperature settings.
+2. **Open-endedness of responses** – There are often multiple “correct” answers or formulations, making exact matching ineffective.
+3. **Contextual dependency** – Model quality depends on conversation history, user intent, and implicit world knowledge, all of which are difficult to reproduce precisely.
+4. **Subjectivity in quality judgment** – Criteria such as helpfulness, tone, or creativity rely on human or LLM-based interpretation rather than hard logic.
+5. **Multi-turn entanglement** – In conversational settings, evaluation must account for how each turn contributes to the evolving goal, not just the final answer.
+
+These factors make it difficult to isolate and measure improvement objectively, slowing feedback cycles and inflating evaluation costs.
+
+---
+
+### Current Industry Practice
+
+In practice, the industry has adopted several frameworks to standardize and automate evaluation for LLMs.
+Systems such as **Ragas**, **TruLens**, **DeepEval**, **PromptLayer**, and **Evals (OpenAI)** enable model-level and application-level monitoring.
+They typically rely on **prompt–completion pair evaluation**, **tool-selection accuracy**, and **retrieval quality assessment** — comparing generated outputs against reference answers or judging them using *LLM-as-a-judge* scoring metrics such as *relevance*, *coherence*, *faithfulness*, and *groundedness*.
+Some incorporate *human-in-the-loop* pipelines or synthetic test suites that evaluate model performance on various tasks.
+
+---
+
+### Resulting Challenges
+
+Despite these advances, several core challenges remain for evaluating modern LLM applications:
+
+1. **Evaluation Subjectivity** – Assessments often depend on interpretive scoring rather than deterministic criteria, reducing reliability.
+2. **High Evaluation Cost** – Human or model-based judging incurs substantial time and token costs.
+3. **Lack of Granular Control** – Most frameworks treat entire conversations as atomic units, making it hard to analyze intermediate reasoning or state transitions.
+4. **Limited Structural Awareness** – Evaluators focus on surface text quality rather than the correctness or consistency of the underlying structured artifact.
+5. **Non-reproducible progress** – Without explicit state tracking, evaluators cannot isolate where a conversation improved or regressed.
+
+Together, these issues stem from the inherently **unstructured nature of conversational outputs**. In many real-world applications, the goal of interaction is not arbitrary dialogue but the **co‑construction of structured artifacts** — such as registration

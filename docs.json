@@ -22,10 +22,9 @@
             ]
           },
           {
-            "group": "The State-Updater-Presenter (SUP) Pattern",
+            "group": "The SUP Pattern",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
+              "sup/What-is-SUP"
             ]
           },
           {
