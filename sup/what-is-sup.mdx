@@ -12,14 +12,6 @@ Recognizing this intent reveals a **design pattern** where conversations revolve
 
 ---
 
-AI Agent projects often face challenges in maintaining clarity, modularity, and evaluability as they grow in complexity, especially those with the goal of conversation is not arbitrary dialogue but the **co‑construction of structured artifacts** — such as registration records, project plans, design drafts, or analytical summaries — that carry discernible form and semantics.
-
-In such projects, recognizing this shared intent reveals a **general design pattern** in which conversations revolve around a central, evolving artifact — the _artifact state_. Similar to **MVC** in conventional software design—separating reasoning, state management, and presentation—to achieve higher levels of **modularity, testability, replaceability, observability, and portability**. By formalizing this pattern, teams can design, evaluate, and refine language‑model systems with improved **granularity, efficiency, transparency, and cost‑effectiveness** **modularity, testability, replaceability, observability, and portability**.  By formalizing this pattern, we can design, evaluate, and refine language‑model‑powered systems with greater **granularity, efficiency, transparency, and cost‑effectiveness**.
-
----
-
-## 1. Design Overview – The State–Updater–Presenter (SUP) Pattern
-
 The **State–Updater–Presenter (SUP)** pattern divides a conversational or agentic system into three functional parts:
 
 1. **State** – the structured artifact that represents the evolving context or goal.
@@ -27,8 +19,6 @@ The **State–Updater–Presenter (SUP)** pattern divides a conversational or ag
 3. **Presenter** – the component that interprets the current state and produces user-facing messages or UI renderings.
 
 This separation provides a foundation similar to the conventional MVC model while adapting to the conversational and reasoning needs of language-model-based systems.
-
---- (SUP ≈ MVC for AI)
 
 **SUP** follows a separation of concerns that closely mirrors the **MVC** pattern in conventional software design. Conversations are organized around a central, evolving **artifact state** (the “Model”), with distinct components for mutation logic (the “Controller”) and user-facing rendering (the “View”).
 
