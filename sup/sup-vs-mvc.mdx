@@ -1,0 +1,23 @@
+---
+title: "SUP vs MVC"
+description: "While SUP draws inspiration from the MVC pattern, its structure differs significantly to accommodate the dynamic and probabilistic nature of AI-driven systems."
+---
+
+## 1. Comparison with MVC – Overall Differences
+
+While the SUP pattern inherits the separation principles of MVC, it differs in several recommended ways across each of the three main components:
+
+- **Model / Artifact State** – suggested to follow a schema-first design for interoperability and to include conversational dependencies.
+- **Controller / Updater** – focuses solely on deterministic state mutations, isolating reasoning from presentation.
+- **View / Presenter** – aims to be schema-agnostic and reusable across artifacts, projects, agents, and applications.
+
+These distinctions reflect how SUP extends the MVC concept to suit conversational and agentic workflows powered by language models.
+
+---
+
+## 1.1 Comparison with MVC – Focus on the State (Model)
+
+While the SUP pattern inherits the separation principles of MVC, it differs in two recommended ways regarding the **state** (analogous to the model):
+
+1. **Schema-First, Cross-Agent Interoperability** In SUP, the artifact state is suggested to be defined in a **schema-first format** (e.g., OpenAPI or JSON Schema) to enhance **shareability across agents, languages, and frameworks**. This approach enables multiple components or agents to interpret, validate, and update the same state consistently, while still allowing code-first generation where appropriate.
+2. **Conversational Dependencies** Unlike conventional models that primarily encode data structure and persistence rules, the SUP state is recommended to include **semantic dependencies** — indicating which fields are expected to be gathered through conversation or external retrieval before others can proceed. These dependencies guide the dialogue flow, helping the agent collect information or perform lookups in a logical order.

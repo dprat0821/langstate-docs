@@ -48,35 +48,9 @@ This separation provides a foundation similar to the conventional MVC model whil
 | **Updater**        | **Controller** | Interprets intents, enforces rules, applies mutations, emits state diffs |
 | **Presenter**      | **View**       | Renders state to text or UI; controls tone, format, and UX               |
 
-### Design Benefits
-
-- **Modularity & Parallelism**: Teams can evolve schema, updater logic, and presentation independently.
-- **Determinism & Testability**: State diffs make unit tests and property tests straightforward.
-- **Replaceability**: Swap LLMs/tools in the Updater or styles/templates in the Presenter without coupling.
-- **Generative UI**: Renderers and form builders can be generated from the schema.
-- **Observability**: Clear audit logs of state transitions; easier debugging and rollback.
-- **Portability**: A well‑defined state enables reuse across apps and agents.
-
 ---
 
-## 1. Comparison with MVC – Overall Differences
-
-While the SUP pattern inherits the separation principles of MVC, it differs in several recommended ways across each of the three main components:
-
-- **Model / Artifact State** – suggested to follow a schema-first design for interoperability and to include conversational dependencies.
-- **Controller / Updater** – focuses solely on deterministic state mutations, isolating reasoning from presentation.
-- **View / Presenter** – aims to be schema-agnostic and reusable across artifacts, projects, agents, and applications.
-
-These distinctions reflect how SUP extends the MVC concept to suit conversational and agentic workflows powered by language models.
-
----
-
-## 1.1 Comparison with MVC – Focus on the State (Model)
-
-While the SUP pattern inherits the separation principles of MVC, it differs in two recommended ways regarding the **state** (analogous to the model):
-
-1. **Schema-First, Cross-Agent Interoperability** In SUP, the artifact state is suggested to be defined in a **schema-first format** (e.g., OpenAPI or JSON Schema) to enhance **shareability across agents, languages, and frameworks**. This approach enables multiple components or agents to interpret, validate, and update the same state consistently, while still allowing code-first generation where appropriate.
-2. **Conversational Dependencies** Unlike conventional models that primarily encode data structure and persistence rules, the SUP state is recommended to include **semantic dependencies** — indicating which fields are expected to be gathered through conversation or external retrieval before others can proceed. These dependencies guide the dialogue flow, helping the agent collect information or perform lookups in a logical order.
+## 
 
 ---
 
