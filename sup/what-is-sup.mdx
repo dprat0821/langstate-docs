@@ -6,13 +6,15 @@ icon: "recycle"
 
 AI agent projects often struggle with maintaining clarity, modularity, and evaluability as they grow in complexity. Many of these systems aim not for open-ended conversation but for the **co‑construction of structured artifacts** — such as registration records, project plans, or analytical summaries — that have clear form and meaning.
 
-Recognizing this intent reveals a **design pattern** where conversations revolve around a central, evolving artifact — the *artifact state*. Similar to the **MVC** pattern in conventional software, SUP separates reasoning, state management, and presentation to achieve higher levels of **modularity, testability, replaceability, observability, and portability**. By formalizing this structure, teams can design and evaluate language‑model systems with improved **granularity, efficiency, transparency, and cost‑effectiveness**.
+Recognizing this intent reveals a **design pattern** where conversations revolve around a central, evolving artifact — the _artifact state_. Similar to the **MVC** pattern in conventional software, SUP separates reasoning, state management, and presentation to achieve higher levels of **modularity, testability, replaceability, observability, and portability**. By formalizing this structure, teams can design and evaluate language‑model systems with improved **granularity, efficiency, transparency, and cost‑effectiveness**.
+
+![image.png](/images/image.png)
 
 ---
 
-AI Agent projects often face challenges in maintaining clarity, modularity, and evaluability as they grow in complexity, especially those with the goal of conversation is not arbitrary dialogue but the **co‑construction of structured artifacts** — such as registration records, project plans, design drafts, or analytical summaries — that carry discernible form and semantics. 
+AI Agent projects often face challenges in maintaining clarity, modularity, and evaluability as they grow in complexity, especially those with the goal of conversation is not arbitrary dialogue but the **co‑construction of structured artifacts** — such as registration records, project plans, design drafts, or analytical summaries — that carry discernible form and semantics.
 
-In such projects, recognizing this shared intent reveals a **general design pattern** in which conversations revolve around a central, evolving artifact — the *artifact state*. Similar to **MVC** in conventional software design—separating reasoning, state management, and presentation—to achieve higher levels of **modularity, testability, replaceability, observability, and portability**. By formalizing this pattern, teams can design, evaluate, and refine language‑model systems with improved **granularity, efficiency, transparency, and cost‑effectiveness** **modularity, testability, replaceability, observability, and portability**.  By formalizing this pattern, we can design, evaluate, and refine language‑model‑powered systems with greater **granularity, efficiency, transparency, and cost‑effectiveness**.
+In such projects, recognizing this shared intent reveals a **general design pattern** in which conversations revolve around a central, evolving artifact — the _artifact state_. Similar to **MVC** in conventional software design—separating reasoning, state management, and presentation—to achieve higher levels of **modularity, testability, replaceability, observability, and portability**. By formalizing this pattern, teams can design, evaluate, and refine language‑model systems with improved **granularity, efficiency, transparency, and cost‑effectiveness** **modularity, testability, replaceability, observability, and portability**.  By formalizing this pattern, we can design, evaluate, and refine language‑model‑powered systems with greater **granularity, efficiency, transparency, and cost‑effectiveness**.
 
 ---
 
@@ -32,21 +34,21 @@ This separation provides a foundation similar to the conventional MVC model whil
 
 ### Schema‑First “Model”: Artifact State
 
-* Define the artifact state **schema first** (fields, types, constraints, dependencies).
-* Treat it as the single source of truth for validation, defaults, and invariants.
-* Design for **DAG dependencies** among fields so partial progress can unlock subsequent fields.
+- Define the artifact state **schema first** (fields, types, constraints, dependencies).
+- Treat it as the single source of truth for validation, defaults, and invariants.
+- Design for **DAG dependencies** among fields so partial progress can unlock subsequent fields.
 
 ### “Controller”: Updater
 
-* Interprets user input and tool results; **applies state mutations** only.
-* Encodes business rules and validations; emits **deterministic state diffs**.
-* Produces **no user‑facing text**; focuses purely on correct state evolution.
+- Interprets user input and tool results; **applies state mutations** only.
+- Encodes business rules and validations; emits **deterministic state diffs**.
+- Produces **no user‑facing text**; focuses purely on correct state evolution.
 
 ### “View”: Presenter
 
-* Interprets the current artifact state (and optionally history).
-* Generates **natural‑language responses** or **UI views**; style and tone are independent of logic.
-* Aims to be **schema‑agnostic**, enabling reuse across artifacts, projects, agents, and applications.
+- Interprets the current artifact state (and optionally history).
+- Generates **natural‑language responses** or **UI views**; style and tone are independent of logic.
+- Aims to be **schema‑agnostic**, enabling reuse across artifacts, projects, agents, and applications.
 
 ### SUP ↔ MVC Mapping
 
@@ -58,12 +60,12 @@ This separation provides a foundation similar to the conventional MVC model whil
 
 ### Design Benefits
 
-* **Modularity & Parallelism**: Teams can evolve schema, updater logic, and presentation independently.
-* **Determinism & Testability**: State diffs make unit tests and property tests straightforward.
-* **Replaceability**: Swap LLMs/tools in the Updater or styles/templates in the Presenter without coupling.
-* **Generative UI**: Renderers and form builders can be generated from the schema.
-* **Observability**: Clear audit logs of state transitions; easier debugging and rollback.
-* **Portability**: A well‑defined state enables reuse across apps and agents.
+- **Modularity & Parallelism**: Teams can evolve schema, updater logic, and presentation independently.
+- **Determinism & Testability**: State diffs make unit tests and property tests straightforward.
+- **Replaceability**: Swap LLMs/tools in the Updater or styles/templates in the Presenter without coupling.
+- **Generative UI**: Renderers and form builders can be generated from the schema.
+- **Observability**: Clear audit logs of state transitions; easier debugging and rollback.
+- **Portability**: A well‑defined state enables reuse across apps and agents.
 
 ---
 
@@ -71,9 +73,9 @@ This separation provides a foundation similar to the conventional MVC model whil
 
 While the SUP pattern inherits the separation principles of MVC, it differs in several recommended ways across each of the three main components:
 
-* **Model / Artifact State** – suggested to follow a schema-first design for interoperability and to include conversational dependencies.
-* **Controller / Updater** – focuses solely on deterministic state mutations, isolating reasoning from presentation.
-* **View / Presenter** – aims to be schema-agnostic and reusable across artifacts, projects, agents, and applications.
+- **Model / Artifact State** – suggested to follow a schema-first design for interoperability and to include conversational dependencies.
+- **Controller / Updater** – focuses solely on deterministic state mutations, isolating reasoning from presentation.
+- **View / Presenter** – aims to be schema-agnostic and reusable across artifacts, projects, agents, and applications.
 
 These distinctions reflect how SUP extends the MVC concept to suit conversational and agentic workflows powered by language models.
 
@@ -83,11 +85,8 @@ These distinctions reflect how SUP extends the MVC concept to suit conversationa
 
 While the SUP pattern inherits the separation principles of MVC, it differs in two recommended ways regarding the **state** (analogous to the model):
 
-1. **Schema-First, Cross-Agent Interoperability**
-   In SUP, the artifact state is suggested to be defined in a **schema-first format** (e.g., OpenAPI or JSON Schema) to enhance **shareability across agents, languages, and frameworks**. This approach enables multiple components or agents to interpret, validate, and update the same state consistently, while still allowing code-first generation where appropriate.
-
-2. **Conversational Dependencies**
-   Unlike conventional models that primarily encode data structure and persistence rules, the SUP state is recommended to include **semantic dependencies** — indicating which fields are expected to be gathered through conversation or external retrieval before others can proceed. These dependencies guide the dialogue flow, helping the agent collect information or perform lookups in a logical order.
+1. **Schema-First, Cross-Agent Interoperability** In SUP, the artifact state is suggested to be defined in a **schema-first format** (e.g., OpenAPI or JSON Schema) to enhance **shareability across agents, languages, and frameworks**. This approach enables multiple components or agents to interpret, validate, and update the same state consistently, while still allowing code-first generation where appropriate.
+2. **Conversational Dependencies** Unlike conventional models that primarily encode data structure and persistence rules, the SUP state is recommended to include **semantic dependencies** — indicating which fields are expected to be gathered through conversation or external retrieval before others can proceed. These dependencies guide the dialogue flow, helping the agent collect information or perform lookups in a logical order.
 
 ---
 
@@ -95,17 +94,13 @@ While the SUP pattern inherits the separation principles of MVC, it differs in t
 
 ### The Role of Evaluation in Software Applications
 
-Evaluation is a critical foundation for the **continuous improvement of software applications**.
-Just as testing and benchmarking underpin the reliability of conventional systems, systematic evaluation ensures that software maintains **quality, consistency, and usability** as it evolves.
-Accurate evaluation provides the feedback loop needed to refine models, components, workflows, and user experiences — forming the basis for **data-driven iteration and deployment confidence**.
+Evaluation is a critical foundation for the **continuous improvement of software applications**. Just as testing and benchmarking underpin the reliability of conventional systems, systematic evaluation ensures that software maintains **quality, consistency, and usability** as it evolves. Accurate evaluation provides the feedback loop needed to refine models, components, workflows, and user experiences — forming the basis for **data-driven iteration and deployment confidence**.
 
 ---
 
 ### Why Evaluation of LLM Applications Is Complex
 
-However, evaluating LLM-driven systems is far more complex than evaluating traditional software.
-Conventional programs produce deterministic outputs that can be verified through well-defined rules or unit tests, while language models generate **probabilistic, context-dependent, and multi-modal responses**.
-Several factors contribute to this complexity:
+However, evaluating LLM-driven systems is far more complex than evaluating traditional software. Conventional programs produce deterministic outputs that can be verified through well-defined rules or unit tests, while language models generate **probabilistic, context-dependent, and multi-modal responses**. Several factors contribute to this complexity:
 
 1. **Non-determinism** – The same prompt can yield different valid outputs due to model randomness, context drift, or temperature settings.
 2. **Open-endedness of responses** – There are often multiple “correct” answers or formulations, making exact matching ineffective.
@@ -119,10 +114,7 @@ These factors make it difficult to isolate and measure improvement objectively, 
 
 ### Current Industry Practice
 
-In practice, the industry has adopted several frameworks to standardize and automate evaluation for LLMs.
-Systems such as **Ragas**, **TruLens**, **DeepEval**, **PromptLayer**, and **Evals (OpenAI)** enable model-level and application-level monitoring.
-They typically rely on **prompt–completion pair evaluation**, **tool-selection accuracy**, and **retrieval quality assessment** — comparing generated outputs against reference answers or judging them using *LLM-as-a-judge* scoring metrics such as *relevance*, *coherence*, *faithfulness*, and *groundedness*.
-Some incorporate *human-in-the-loop* pipelines or synthetic test suites that evaluate model performance on various tasks.
+In practice, the industry has adopted several frameworks to standardize and automate evaluation for LLMs. Systems such as **Ragas**, **TruLens**, **DeepEval**, **PromptLayer**, and **Evals (OpenAI)** enable model-level and application-level monitoring. They typically rely on **prompt–completion pair evaluation**, **tool-selection accuracy**, and **retrieval quality assessment** — comparing generated outputs against reference answers or judging them using _LLM-as-a-judge_ scoring metrics such as _relevance_, _coherence_, _faithfulness_, and _groundedness_. Some incorporate _human-in-the-loop_ pipelines or synthetic test suites that evaluate model performance on various tasks.
 
 ---
 
