@@ -22,7 +22,7 @@
             ]
           },
           {
-            "group": "Customization",
+            "group": "The State-Updater-Presenter (SUP) Pattern",
             "pages": [
               "essentials/settings",
               "essentials/navigation"
