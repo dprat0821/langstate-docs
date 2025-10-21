@@ -16,30 +16,24 @@
           {
             "group": "Getting started",
             "pages": [
-              "index",
+              "install",
               "quickstart",
-              "development"
+              "rationale"
             ]
           },
           {
-            "group": "The SUP Design Pattern",
+            "group": "SUP: An LLM App Design Pattern",
             "pages": [
-              "sup/What-is-SUP",
-              {
-                "group": "The SUP Components",
-                "icon": "box",
-                "pages": [
-                  "sup/SUP-vs-MVC",
-                  "sup/State",
-                  "sup/Updater",
-                  "sup/Presenter"
-                ]
-              },
+              "sup/sup",
+              "sup/SUP-vs-MVC",
+              "sup/State",
+              "sup/Updater",
+              "sup/Presenter",
               "sup/SUP-for-LLM-Evaluation"
             ]
           },
           {
-            "group": "Writing content",
+            "group": "LangState: The Design",
             "pages": [
               "essentials/markdown",
               "essentials/code",
@@ -56,26 +50,6 @@
             ]
           }
         ]
-      },
-      {
-        "tab": "API reference",
-        "groups": [
-          {
-            "group": "API documentation",
-            "pages": [
-              "api-reference/introduction"
-            ]
-          },
-          {
-            "group": "Endpoint examples",
-            "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
-            ]
-          }
-        ]
       }
     ]
   },
@@ -87,13 +61,13 @@
     "links": [
       {
         "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "href": "mailto:hi@langstate.com"
       }
     ],
     "primary": {
       "type": "button",
       "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "href": "https://dashboard.langstate.com"
     }
   },
   "contextual": {
